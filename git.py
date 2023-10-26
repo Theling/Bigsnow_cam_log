@@ -6,13 +6,14 @@ PROD_BRANCH = "prod"
 
 
 # Function to perform Git commands
-def git_operations(directory_path):
+def git_operations(directory_path, prod = False):
+    cwd = os.getcwd()
     try:
         # Change directory to the Git repository
         os.chdir(directory_path)
 
         # 1. Git checkout to another branch
-        subprocess.run(["git", "checkout", PROD_BRANCH])
+        if prod: subprocess.run(["git", "checkout", PROD_BRANCH])
 
         # 2. Add all files in the directory and remove non-existing files
         subprocess.run(["git", "add", "."])
@@ -27,9 +28,11 @@ def git_operations(directory_path):
         subprocess.run(["git", "push"])
         
         # 5. Check back to main branch
-        subprocess.run(["git", "checkout", 'main'])
+        # subprocess.run(["git", "checkout", 'main'])
 
         print("Git commands executed successfully.")
 
     except Exception as e:
         print(f"Error: {e}")
+    finally:
+        os.chdir(cwd)

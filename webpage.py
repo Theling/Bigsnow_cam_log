@@ -25,6 +25,7 @@ def capture_screenshot(*,
 
     video_element = driver.find_element(By.ID, "webcam_holder")  # Replace with the actual class name of the <video> element
 
+    # if verbose: print(video_element)
     # Scroll to the video element
     driver.execute_script("arguments[0].scrollIntoView(true);", video_element)
 

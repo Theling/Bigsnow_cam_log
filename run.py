@@ -21,19 +21,16 @@ driver = webdriver.Chrome(options=chrome_options)
 url = "https://www.bigsnowamericandream.com/live-stream/"  # Replace this with the URL of the webpage you want to scrape
 
 
-driver.get(url)
-
-
-def clean_push(log_path, step_time):    
+def clean_push(log_path, keep_time):    
     try:
-        remove_old_files(log_path, step_time)
-        git_operations(log_path)
+        remove_old_files(log_path, keep_time)
+        git_operations(log_path, prod=args.prod)
         
     except Exception as info:
         current_time = datetime.datetime.now()
         # Format and print the current timestamp
         formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
-        print(f"<main_clean_push> Exceptions ({formatted_time}) -- ", info)
+        print(f"<clean_push> Exceptions ({formatted_time}) -- ", info)
 
     
 
@@ -46,9 +43,10 @@ def main(args):
         try:
             capture_screenshot(driver = driver,
                             url = url, 
-                            save_path = filename)
+                            save_path = filename,
+                            verbose=True)
             
-            time.sleep(5)
+            # time.sleep(5)
             clean_push(log_path, step_time*5)
         except Exception as info:
             current_time = datetime.datetime.now()
@@ -66,10 +64,11 @@ def main(args):
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description="Capture frames from a video element and save them as images.")
-    parser.add_argument("--step_time", default=900, help="Length of time interval between two screenshots.")
-    parser.add_argument("--keep_num_screenshots", default=5, help="The number of screenshots kept in the directory.")
+    parser.add_argument("--step_time", default=900, type = int, help="Length of time interval between two screenshots in seconds, default 900.")
+    parser.add_argument("--keep_num_screenshots", default=5, type = int, help="The number of screenshots kept in the directory, default 5.")
+    parser.add_argument("--prod", default=True, type=bool, help="Product mode, whether to push screenshots to prod branch, default True")
     
-    parser.add_argument("--log_path", default='./log', help="Directory to save screenshots.")
+    parser.add_argument("--log_path", default='./log', help="Directory to save screenshots, default ./log")
     args = parser.parse_args()
     print(f"Saving screenshots every {args.step_time} seconds")
     
