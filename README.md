@@ -13,8 +13,9 @@ pip install selenium Pillow
 1. Clone this repository, the default path for saving screenshots is ```"./log"```
 1. ```python run.py```
 
-## Optional Arguments:
-```
+## Optional Arguments
+
+```bash
 $ python run.py --help
 usage: run.py [-h] [--step_time STEP_TIME] [--keep_num_screenshots KEEP_NUM_SCREENSHOTS] [--prod PROD] [--log_path LOG_PATH]
 
@@ -25,7 +26,7 @@ options:
   --step_time STEP_TIME
                         Length of time interval between two screenshots in seconds, default 900.
   --keep_num_screenshots KEEP_NUM_SCREENSHOTS
-                        The number of screenshots kept in the directory, default 5.
+                        The number of screenshots kept in the directory, default 100.
   --prod PROD           Product mode, whether to push screenshots to prod branch, default True
   --log_path LOG_PATH   Directory to save screenshots, default ./log
 ```
