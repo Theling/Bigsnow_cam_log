@@ -10,7 +10,7 @@ def crop(filename):
     # Crop the image
     img = Image.open(filename)
     cropped_img = img.crop((X1, Y1, X2, Y2))  # Set the coordinates (x1, y1, x2, y2) for cropping
-    cropped_img.save(filename+'.crop.png')
+    cropped_img.save(filename)
     img.close()
 
 # Function to capture and crop screenshot
@@ -25,7 +25,7 @@ def capture_screenshot(*,
 
     video_element = driver.find_element(By.ID, "webcam_holder")  # Replace with the actual class name of the <video> element
 
-    # Scroll to the bottom of the page to load all content
+    # Scroll to the video element
     driver.execute_script("arguments[0].scrollIntoView(true);", video_element)
 
     # Capture screenshot
@@ -34,7 +34,6 @@ def capture_screenshot(*,
     if verbose: print(f"Log created: {save_path}")
     
     crop(screenshot_path)
-    
 
 
 
