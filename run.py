@@ -21,19 +21,16 @@ driver = webdriver.Chrome(options=chrome_options)
 url = "https://www.bigsnowamericandream.com/live-stream/"  # Replace this with the URL of the webpage you want to scrape
 
 
-driver.get(url)
-
-
-def clean_push(log_path, step_time):    
+def clean_push(log_path, keep_time):    
     try:
-        remove_old_files(log_path, step_time)
+        remove_old_files(log_path, keep_time)
         git_operations(log_path)
         
     except Exception as info:
         current_time = datetime.datetime.now()
         # Format and print the current timestamp
         formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
-        print(f"<main_clean_push> Exceptions ({formatted_time}) -- ", info)
+        print(f"<clean_push> Exceptions ({formatted_time}) -- ", info)
 
     
 
@@ -46,9 +43,10 @@ def main(args):
         try:
             capture_screenshot(driver = driver,
                             url = url, 
-                            save_path = filename)
+                            save_path = filename,
+                            verbose=True)
             
-            time.sleep(5)
+            # time.sleep(5)
             clean_push(log_path, step_time*5)
         except Exception as info:
             current_time = datetime.datetime.now()

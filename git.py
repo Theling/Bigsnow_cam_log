@@ -12,7 +12,7 @@ def git_operations(directory_path):
         os.chdir(directory_path)
 
         # 1. Git checkout to another branch
-        subprocess.run(["git", "checkout", PROD_BRANCH])
+        # subprocess.run(["git", "checkout", PROD_BRANCH])
 
         # 2. Add all files in the directory and remove non-existing files
         subprocess.run(["git", "add", "."])
@@ -27,7 +27,7 @@ def git_operations(directory_path):
         subprocess.run(["git", "push"])
         
         # 5. Check back to main branch
-        subprocess.run(["git", "checkout", 'main'])
+        # subprocess.run(["git", "checkout", 'main'])
 
         print("Git commands executed successfully.")
 
