@@ -8,6 +8,8 @@ conda activate scrape
 pip install selenium Pillow
 ```
 
+Chrome Driver installation on Ubuntu refers to [https://tecadmin.net/setup-selenium-chromedriver-on-ubuntu/]
+
 ## Setup
 
 1. Clone this repository, the default path for saving screenshots is ```"./log"```
