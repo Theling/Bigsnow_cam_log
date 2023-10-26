@@ -1,9 +1,14 @@
 from webpage import capture_screenshot
-from utils import generate_filename
+from utils import generate_filename, remove_old_files
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import time
+import datetime
+from pathlib import Path
+
+from git import git_operations
+
 
 # Set up Chrome WebDriver
 chrome_options = Options()
@@ -17,22 +22,55 @@ url = "https://www.bigsnowamericandream.com/live-stream/"  # Replace this with t
 
 
 driver.get(url)
-def main(step_time = 900):
-    # Run the scraping script every 15 minutes
-    log_path = f"./log/{generate_filename()}"
+
+
+def clean_push(log_path, step_time):    
+    try:
+        remove_old_files(log_path, step_time)
+        git_operations(log_path)
+        
+    except Exception as info:
+        current_time = datetime.datetime.now()
+        # Format and print the current timestamp
+        formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
+        print(f"<main_clean_push> Exceptions ({formatted_time}) -- ", info)
+
+    
+
+def main(args):
+    step_time = int(args.step_time)
+    log_path = args.log_path
     while True:
-        capture_screenshot(driver = driver,
-                        url = url, 
-                        save_path = log_path)
+        filename = str(Path(log_path)/generate_filename())
+        try:
+            capture_screenshot(driver = driver,
+                            url = url, 
+                            save_path = filename)
+            
+            time.sleep(5)
+            clean_push(log_path, step_time)
+        except Exception as info:
+            current_time = datetime.datetime.now()
+            # Format and print the current timestamp
+            formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
+            print(f"<main> Exceptions ({formatted_time}) -- ", info)
+            
+
         time.sleep(step_time)  # 900 seconds = 15 minutes
         
 
 
+
         
 if __name__ == "__main__":
-    import sys
-    step_time = sys.argv[1]
-    print(f"Saving screenshots every {step_time} seconds")
-    main(step_time)
+    import argparse
+    parser = argparse.ArgumentParser(description="Capture frames from a video element and save them as images.")
+    parser.add_argument("--step_time", default=900, help="Length of time interval between two screenshots.")
+    parser.add_argument("--log_path", default='./log', help="Directory to save screenshots.")
+    args = parser.parse_args()
+    print(f"Saving screenshots every {args.step_time} seconds")
+    
+    
+    main(args)
     
     # test()

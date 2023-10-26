@@ -30,8 +30,20 @@ def main():
                             verbose=True)
         
     test()
+    
+def main_remove():
+    from utils import remove_old_files
+    
+    remove_old_files("./log", 1800)
+    
+    
+def main_git():
+    from git import git_operations
+    
+    git_operations('./log')
         
         
 
 if __name__=="__main__":
-    main()
+    # main_remove()
+    main_git()
