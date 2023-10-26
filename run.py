@@ -47,7 +47,7 @@ def main(args):
                             verbose=True)
             
             # time.sleep(5)
-            clean_push(log_path, step_time*5)
+            if args.push: clean_push(log_path, step_time*5)
         except Exception as info:
             current_time = datetime.datetime.now()
             # Format and print the current timestamp
