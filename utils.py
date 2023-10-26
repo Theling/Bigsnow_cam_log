@@ -23,3 +23,10 @@ def remove_old_files(directory_path, threshold_seconds):
             if file_age_seconds > threshold_seconds:
                 os.remove(file_path)
                 print(f"Removed old file: {filename}")
+                
+def create_directory(directory_path):
+    if not os.path.exists(directory_path):
+        os.makedirs(directory_path)
+        print(f"Directory '{directory_path}' created successfully.")
+    else:
+        print(f"Directory '{directory_path}' already exists.")

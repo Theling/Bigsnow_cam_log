@@ -1,5 +1,5 @@
 from webpage import capture_screenshot
-from utils import generate_filename, remove_old_files
+from utils import generate_filename, remove_old_files, create_directory
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -40,6 +40,7 @@ def clean_push(log_path, step_time):
 def main(args):
     step_time = int(args.step_time)
     log_path = args.log_path
+    create_directory(log_path)
     while True:
         filename = str(Path(log_path)/generate_filename())
         try:
@@ -48,7 +49,7 @@ def main(args):
                             save_path = filename)
             
             time.sleep(5)
-            clean_push(log_path, step_time)
+            clean_push(log_path, step_time*5)
         except Exception as info:
             current_time = datetime.datetime.now()
             # Format and print the current timestamp
@@ -66,6 +67,8 @@ if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description="Capture frames from a video element and save them as images.")
     parser.add_argument("--step_time", default=900, help="Length of time interval between two screenshots.")
+    parser.add_argument("--keep_num_screenshots", default=5, help="The number of screenshots kept in the directory.")
+    
     parser.add_argument("--log_path", default='./log', help="Directory to save screenshots.")
     args = parser.parse_args()
     print(f"Saving screenshots every {args.step_time} seconds")
