@@ -24,7 +24,7 @@ url = "https://www.bigsnowamericandream.com/live-stream/"  # Replace this with t
 def clean_push(log_path, keep_time):    
     try:
         remove_old_files(log_path, keep_time)
-        git_operations(log_path)
+        git_operations(log_path, prod=args.prod)
         
     except Exception as info:
         current_time = datetime.datetime.now()
@@ -64,8 +64,9 @@ def main(args):
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description="Capture frames from a video element and save them as images.")
-    parser.add_argument("--step_time", default=900, help="Length of time interval between two screenshots.")
-    parser.add_argument("--keep_num_screenshots", default=5, help="The number of screenshots kept in the directory.")
+    parser.add_argument("--step_time", default=900, type = int, help="Length of time interval between two screenshots.")
+    parser.add_argument("--keep_num_screenshots", default=5, type = int, help="The number of screenshots kept in the directory.")
+    parser.add_argument("--prod", default=True, type=bool, help="The number of screenshots kept in the directory.")
     
     parser.add_argument("--log_path", default='./log', help="Directory to save screenshots.")
     args = parser.parse_args()

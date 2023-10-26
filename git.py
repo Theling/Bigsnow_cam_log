@@ -13,7 +13,7 @@ def git_operations(directory_path, prod = False):
         os.chdir(directory_path)
 
         # 1. Git checkout to another branch
-        # subprocess.run(["git", "checkout", PROD_BRANCH])
+        if prod: subprocess.run(["git", "checkout", PROD_BRANCH])
 
         # 2. Add all files in the directory and remove non-existing files
         subprocess.run(["git", "add", "."])
