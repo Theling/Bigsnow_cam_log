@@ -64,11 +64,11 @@ def main(args):
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description="Capture frames from a video element and save them as images.")
-    parser.add_argument("--step_time", default=900, type = int, help="Length of time interval between two screenshots.")
-    parser.add_argument("--keep_num_screenshots", default=5, type = int, help="The number of screenshots kept in the directory.")
-    parser.add_argument("--prod", default=True, type=bool, help="The number of screenshots kept in the directory.")
+    parser.add_argument("--step_time", default=900, type = int, help="Length of time interval between two screenshots in seconds, default 900.")
+    parser.add_argument("--keep_num_screenshots", default=5, type = int, help="The number of screenshots kept in the directory, default 5.")
+    parser.add_argument("--prod", default=True, type=bool, help="Product mode, whether to push screenshots to prod branch, default True")
     
-    parser.add_argument("--log_path", default='./log', help="Directory to save screenshots.")
+    parser.add_argument("--log_path", default='./log', help="Directory to save screenshots, default ./log")
     args = parser.parse_args()
     print(f"Saving screenshots every {args.step_time} seconds")
     
