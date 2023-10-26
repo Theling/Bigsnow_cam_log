@@ -6,7 +6,8 @@ PROD_BRANCH = "prod"
 
 
 # Function to perform Git commands
-def git_operations(directory_path):
+def git_operations(directory_path, prod = False):
+    cwd = os.getcwd()
     try:
         # Change directory to the Git repository
         os.chdir(directory_path)
@@ -33,3 +34,5 @@ def git_operations(directory_path):
 
     except Exception as e:
         print(f"Error: {e}")
+    finally:
+        os.chdir(cwd)
