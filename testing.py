@@ -29,6 +29,8 @@ def main():
                             save_path = log_path,
                             verbose=True)
         
+    test()
+        
         
 
 if __name__=="__main__":
