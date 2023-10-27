@@ -49,8 +49,9 @@ def report(filepath):
 
     # Create a Markdown file with image links in reverse order
     with open(markdown_output_path, "w") as markdown_file:
-        markdown_file.write("# Big Snow Cam Log\n\n")
-        
+        markdown_file.write("# Big Snow Cam Log\n")
+        markdown_file.write('Live Cam: "https://www.bigsnowamericandream.com/live-stream/" \n\n')
+        markdown_file.write("### History\n\n")
         for image_file in image_files:
             image_path = os.path.join(images_directory, image_file)
             markdown_file.write(f"![{image_file}]({image_path})\n\n")
