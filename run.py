@@ -1,5 +1,5 @@
 from webpage import capture_screenshot
-from utils import generate_filename, remove_old_files, create_directory
+from utils import generate_filename, remove_old_files, create_directory, report
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -15,7 +15,7 @@ chrome_options = Options()
 chrome_options.add_argument("--headless")  # Run Chrome in headless mode (no GUI)
 # chrome_options.add_argument("--start-maximized") # Maximize window to ensure entire page is captured
 driver = webdriver.Chrome(options=chrome_options)
-
+driver.set_window_size(800, 600)
 
 # URL of the webpage to scrape
 url = "https://www.bigsnowamericandream.com/live-stream/"  # Replace this with the URL of the webpage you want to scrape
@@ -47,6 +47,7 @@ def main(args):
                             verbose=True)
             
             # time.sleep(5)
+            report(log_path)
             if args.push: clean_push(log_path, step_time*5)
         except Exception as info:
             current_time = datetime.datetime.now()
@@ -65,7 +66,7 @@ if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description="Capture frames from a video element and save them as images.")
     parser.add_argument("--step_time", default=900, type = int, help="Length of time interval between two screenshots in seconds, default 900.")
-    parser.add_argument("--keep_num_screenshots", default=100, type = int, help="The number of screenshots kept in the directory, default 5.")
+    parser.add_argument("--keep_num_screenshots", default=40, type = int, help="The number of screenshots kept in the directory, default 5.")
     parser.add_argument("--prod", default=True, type=bool, help="Product mode, whether to switch to prod branch, default True")
     parser.add_argument("--push", default=False, type=bool, help="Whether to push screenshots, default False")
     parser.add_argument("--log_path", default='./log', help="Directory to save screenshots, default ./log")

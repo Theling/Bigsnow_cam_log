@@ -9,6 +9,7 @@ PROD_BRANCH = "prod"
 def git_operations(directory_path, prod = False):
     cwd = os.getcwd()
     try:
+        subprocess.run(["git", "add", "history.md"])
         # Change directory to the Git repository
         os.chdir(directory_path)
 
