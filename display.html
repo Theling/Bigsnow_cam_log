@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big Snow Cam Log</title>
+</head>
+
+<body>
+    <h1>Big Snow Cam Log</h1>
+
+    <div id="image-container"></div>
+
+    <script>
+        // Directory path containing the .png images
+        var imagesDirectory = "./log";
+
+        // Function to fetch and display images
+        function displayImages() {
+            var imageContainer = document.getElementById("image-container");
+
+            // Fetch list of .png files from the server
+            fetch(imagesDirectory)
+                .then(response => response.text())
+                .then(data => {
+                    // Parse the list of files
+                    var files = data.split("\n").filter(file => file.trim() !== "");
+
+                    // Display images in the image container
+                    files.forEach(file => {
+                        var imageUrl = imagesDirectory + "/" + file;
+                        var imgElement = document.createElement("img");
+                        imgElement.src = imageUrl;
+                        imgElement.style.width = "300px"; // Set image width for display
+                        imageContainer.appendChild(imgElement);
+                    });
+                })
+                .catch(error => {
+                    console.error("Error fetching images:", error);
+                });
+        }
+
+        // Call the function to display images
+        displayImages();
+    </script>
+</body>
+
+</html>

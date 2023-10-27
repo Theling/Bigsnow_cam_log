@@ -69,9 +69,15 @@ def main_window_size():
     driver.quit()
         
         
+def main_report():
+    from utils import report
+    
+    report('./test')
+        
 
 if __name__=="__main__":
     # main_remove()
     # main_git()
     # main_window_size()
-    main()
+    # main()
+    main_report()

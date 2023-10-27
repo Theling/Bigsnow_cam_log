@@ -1,5 +1,5 @@
 from webpage import capture_screenshot
-from utils import generate_filename, remove_old_files, create_directory
+from utils import generate_filename, remove_old_files, create_directory, report
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -47,6 +47,7 @@ def main(args):
                             verbose=True)
             
             # time.sleep(5)
+            report(log_path)
             if args.push: clean_push(log_path, step_time*5)
         except Exception as info:
             current_time = datetime.datetime.now()
