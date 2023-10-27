@@ -1,5 +1,7 @@
 # Big Snow Cam Log
 
+![screenshot_2023-10-26_20-23-37.png](./log/screenshot_2023-10-26_20-23-37.png)
+
 ![screenshot_2023-10-26_20-08-28.png](./log/screenshot_2023-10-26_20-08-28.png)
 
 ![screenshot_2023-10-26_20-05-28.png](./log/screenshot_2023-10-26_20-05-28.png)
