@@ -48,7 +48,7 @@ def main(args):
             
             # time.sleep(5)
             report(log_path)
-            if args.push: clean_push(log_path, step_time*5)
+            if args.push: clean_push(log_path, step_time*args.keep_num_screenshots)
         except Exception as info:
             current_time = datetime.datetime.now()
             # Format and print the current timestamp
