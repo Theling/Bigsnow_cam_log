@@ -3,6 +3,8 @@ Live Cam: "https://www.bigsnowamericandream.com/live-stream/"
 
 ### History
 
+![screenshot_2024-02-06_06-53-37.png](./log/screenshot_2024-02-06_06-53-37.png)
+
 ![screenshot_2024-02-06_06-38-29.png](./log/screenshot_2024-02-06_06-38-29.png)
 
 ![screenshot_2024-02-06_06-23-21.png](./log/screenshot_2024-02-06_06-23-21.png)
@@ -82,6 +84,4 @@ Live Cam: "https://www.bigsnowamericandream.com/live-stream/"
 ![screenshot_2024-02-05_21-03-31.png](./log/screenshot_2024-02-05_21-03-31.png)
 
 ![screenshot_2024-02-05_20-48-23.png](./log/screenshot_2024-02-05_20-48-23.png)
-
-![screenshot_2024-02-05_20-33-15.png](./log/screenshot_2024-02-05_20-33-15.png)
 
